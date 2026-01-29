@@ -1,4 +1,3 @@
-# leet converter to and from
 leet = {
     'a': 4,
     'e': 3,
