@@ -1,14 +1,37 @@
 # clash of cans
-class Cans:
-    def __init__(self, types, dammage, attack):
+
+# to use as a call back for every army function and building
+class Army():
+    pass
+
+# parent class - Troops
+
+
+class Troops(Army):
+    def __init__(self, types, dammage, health):
         self.types = types
         self.dammage = dammage
-        self.attack = attack
+        self.health = health
 
-# class of troops
+    def attack(self, target):
+        target -= self.dammage
+        return f"{self.name} attacked {target} for {self.damage} damage!"
 
 
-class Archers (Cans):
+# children -actual troops to assign attributes and set defaults
+class Archers (Troops):
+    def __init__(self, location, quant):
+        self.location = location
+        self.quant = quant
+        self.level = 1
+
+    def deploy(self, location):
+        self.location = tuple(location)
+        # to code
+        pass
+
+
+class Barbarians (Troops):
     def __init__(self, location, quant):
         self.location = location
         self.quant = quant
@@ -19,18 +42,7 @@ class Archers (Cans):
         pass
 
 
-class Barbarians (Cans):
-    def __init__(self, location, quant):
-        self.location = location
-        self.quant = quant
-
-    def deploy(self, location):
-        self.location = tuple(location)
-        # to code
-        pass
-
-
-class WallBreakers (Cans):
+class WallBreakers (Troops):
     def __init__(self, location, quant):
         self.location = location
         self.quant = quant
