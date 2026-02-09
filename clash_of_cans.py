@@ -1,8 +1,15 @@
 # clash of cans
 
-# to use as a call back for every army function and building
-class Army():
+# recalls everything at one place
+class IngameObjects():
     pass
+
+# to use as a call back for every army function and building
+
+
+class Army(IngameObjects):
+    def __init__(troop_capacity):
+        pass
 
 # parent class - Troops
 
@@ -27,7 +34,7 @@ class Archers (Troops):
 
     def deploy(self, location):
         self.location = tuple(location)
-        # to code
+        # to code after learning inputs - GUI
         pass
 
 
@@ -38,7 +45,7 @@ class Barbarians (Troops):
 
     def deploy(self, location):
         self.location = tuple(location)
-        # to code
+        # to code after learning inputs - GUI
         pass
 
 
@@ -49,7 +56,7 @@ class WallBreakers (Troops):
 
     def deploy(self, location):
         self.location = tuple(location)
-        # to code
+        # to code after learning inputs - GUI
         pass
 
 # class of defences:
@@ -61,9 +68,24 @@ class Defences:
         if status == "under construction":
             return f"{self} is currently being upgraded!"
 
+    def upgrade(self, level):
+        # i think it will be better if i store the data outside the classes
+        # as when i call them, i can use: class(input, stored data)
+        # to explore
+        pass
+
+    def defend(self, under_attack):
+        self.under_attack = under_attack
+        if self.active == "under construction":
+            return None
+        else:
+            # need to get range here
+            pass
+
 
 class ArcherTower(Defences):
     def __init__(self, location, types, damage, health):
+        # will set location as a tuple for the top left tile to the bottom right tile
         self.location = location
         self.types = types
         self.damage = damage
@@ -122,5 +144,11 @@ class ClanCastle(MainBuildings):
     def requesttroops(self):
         # to
         pass
+
+
+class Villagers(IngameObjects):
+    # to code random villagers walking around after - GUI
+    pass
+
 
 # to be continued..........
