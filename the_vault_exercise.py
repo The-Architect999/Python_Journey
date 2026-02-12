@@ -53,3 +53,10 @@ for acc in accounts_list:
     acc.withdraw(100000)
     print(acc)
     print("-" * 30)
+
+# class Bank (Accounts):
+#     def __init__ (self):
+#         self.tally = []
+
+#     def add_account (self, account):
+#         self.account = account
