@@ -28,7 +28,7 @@ class Troops(IngameObjects):
 # children - Troolps to set defaults
 class Archers (Troops):
     def __init__(self):
-        pass
+        super().__init__()
 
 
 # only one instance needed
@@ -37,7 +37,7 @@ archer = Archers()
 
 class Barbarians (Troops):
     def __init__(self):
-        pass
+        super().__init__()
 
 
 # only one instance needed
@@ -46,7 +46,7 @@ barbarian = Barbarians()
 
 class WallBreakers (Troops):
     def __init__(self):
-        pass
+        super().__init__()
 
 
 # only one instance needed
@@ -64,6 +64,12 @@ class Defences(IngameObjects):
         self.status = False
         # not sure if i should set the status to a bool or a str "currently upgrading"
         # to explore
+
+    "recomendation - for calling the name directly, to try"
+    # def upgrade(self):
+    # # This automatically grabs "ArcherTower" or "Cannon"
+    # class_name = self.__class__.__name__
+    # return f"{class_name} is now upgrading to {self.level}"
 
     def upgrade(self):
         if self.status == "upgrading":
