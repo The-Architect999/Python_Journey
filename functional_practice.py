@@ -97,3 +97,35 @@ duplicates = {char for char in some_list if some_list.count(char) > 1}
 print(duplicates)
 
 
+#Fnuctional Exercises:
+# 1. Map: The "Audit" (Currency Conversion)
+# Rate: 1 USD = 83 INR.
+prices_usd = [10, 25.5, 100, 2]
+prices_inr = (list(map(lambda x: x * 83, prices_usd)))
+print(prices_inr)
+
+# 2. Zip: The "Unit Stats" (Clash of Cans)
+# You need to pair your troop types with their current health levels for a UI display.
+# Task: Combine these two lists into a list of tuples using zip.
+troops = ['Archer', 'Cannon', 'Wall_breaker']
+health = [80, 150, 200]
+troop_health = (list(zip(troops, health)))
+print(troop_health)
+
+# 3. Filter: The "Quality Control" (Mushroom Lab)
+# You’re auditing your Cordyceps batches. Any batch with a contamination level above 15% must be discarded.
+# Task: Use filter and a lambda to keep only the safe batches.
+
+Contamination_levels = [5, 12, 18, 2, 25, 7]
+less_than15 = (list(filter(lambda x: x < 15, Contamination_levels)))
+print(less_than15)
+
+# 4. Reduce: The "Grand Total" (Transaction Summary)
+# You need the final "Settlement" amount for the day.
+# Task: Use reduce to sum up all transaction values into a single number.
+# from functools import reduce (done earlier)
+daily_ledger = [1500, -200, 3000, -150, 450]
+daily_total = reduce(lambda acc, x: acc + x, daily_ledger, 0)
+print(daily_total)
+
+
