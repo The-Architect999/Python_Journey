@@ -128,4 +128,36 @@ daily_ledger = [1500, -200, 3000, -150, 450]
 daily_total = reduce(lambda acc, x: acc + x, daily_ledger, 0)
 print(daily_total)
 
+#more exercises:
+# 1. Map: The "Clean-up"
+# In your mushroom business, batches are logged with extra spaces or inconsistent casing.
+# Task: Clean up this list of mushroom names. Capitalize them and remove the extra spaces.
+raw_labels = ["  cordyceps", "lion's mane  ", "  oyster  ", "reishi"]
+print(list(map(lambda x: x.strip().capitalize(), raw_labels)))
 
+# 2. Zip: The "Inventory Alert"
+# You have names of supplies and their current stock levels. You need to identify what needs reordering.
+# Task: Zip these two lists, then convert the result into a dictionary.
+supplies = ['Agar', 'Alcohol', 'Petri Dishes', 'Substrate']
+stock = [5, 2, 0, 12]
+dict_of_suppliers = (dict(zip(supplies, stock)))
+print(dict_of_suppliers)
+
+# 3. Filter: The "Security Audit"
+# As a fraud specialist, you need to flag transactions that look suspicious. We’ll define "suspicious" as any transaction over ₹10,000.
+# Task: Filter the list to show only the normal (safe) transactions.
+transactions = [1200, 45000, 900, 15000, 7500, 3200]
+print(list(filter(lambda x: x <= 10000, transactions)))
+
+# 4. Reduce: The "Word Smith"
+# Let's step away from numbers. Remember that reduce can combine anything.
+# Task: Take a list of characters and combine them into a single string, but add a hyphen between each letter.
+chars1 = ['L', 'A', 'M', 'B', 'D', 'A']
+print(reduce(lambda x, y: x + "-" + y, chars1))
+
+# 2 and 3 combined:
+sup = ['Agar', 'Alcohol', 'Petri Dishes', 'Substrate']
+stoc = [5, 2, 0, 12]
+# print(dict(zip(sup, stoc)))
+no_stock = dict(filter(lambda x : x[1] == 0, (list(zip(sup, stoc)))))
+print(no_stock)
