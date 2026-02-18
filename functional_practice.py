@@ -161,3 +161,70 @@ stoc = [5, 2, 0, 12]
 # print(dict(zip(sup, stoc)))
 no_stock = dict(filter(lambda x : x[1] == 0, (list(zip(sup, stoc)))))
 print(no_stock)
+
+# basics exercises:
+# Task: Add the new_ids to active_batches so that you end up with one flat list of 6 items.
+active_batches = [101, 102, 103]
+new_ids = [104, 105, 106]
+active_batches.extend(new_ids)
+print(active_batches)
+# Goal: [101, 102, 103, 104, 105, 106]
+
+# Task: Try to retrieve the value for the key 'theme' from the dictionary.
+config = {'sound': True, 'difficulty': 'Hard'}
+print(config.get('theme', 'dark mode'))
+
+# List: The "Task Manager" (.pop)
+# You are processing a stack of tasks. You need to remove the last task from the list and assign it to a variable so you can "work" on it.
+# Task: Remove the last item and store it in a variable called current_task.
+tasks = ['Email', 'Meeting', 'Code']
+tasks.pop()
+current_task = tasks.copy()
+print(current_task)
+# Goal: tasks should be ['Email', 'Meeting'] and current_task should be 'Code'
+
+# You have a default profile for a new user. The user then customizes their profile with specific settings.
+# Task: Update the default_profile with the user_settings. The user's specific choices should overwrite the defaults, but keep the other defaults intact.
+
+profile = {'notifications': True, 'theme': 'Light', 'role': 'User'}
+updates = {'theme': 'Dark', 'notifications': False}
+profile.update(updates)
+print(profile)
+
+# The "Methods" Boss Fight (Sets) ⚔️
+# Scenario: You sent 5 scouts to find mushroom locations. Only 3 returned. You need to identify exactly who is missing so you can send a rescue party.
+
+scouts = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo']
+survivors = ['Alpha', 'Charlie', 'Echo']
+missing = (set(scouts)).difference(set(survivors))
+print(missing)
+
+#back to functional exercises:
+# Your sensors report temperature in Celsius, but your American business partner needs it in Fahrenheit.
+# Formula: (C times 9/5) + 32
+celsius_readings = [0, 20, 37, 100]
+fahrenheit_readings = list(map(lambda x: x * 9/5 + 32, celsius_readings))
+print(fahrenheit_readings)
+
+# You are auditing a database. Usernames must be at least 5 characters long to be valid.
+users = ['admin', 'root', 'superman', 'guest', 'architect']
+valid_users = list(filter(lambda x: len(x) >= 5, users))
+print(valid_users)
+# Goal: A list containing only 'superman' and 'architect' (and maybe 'admin'? Count carefully!).
+# trick question huh
+
+# Zip: The "Price Tag" (Marketplace)
+# You have a list of items and a corresponding list of prices.
+items = ['Mushroom Kit', 'Scalpel', 'Alcohol']
+prices = [2500, 500, 150]
+combined_dict = dict(zip(items, prices))
+print(combined_dict)
+# Task: Create a Dictionary where items are keys and prices are values.
+
+# You need to calculate the total number of combinations for a lock, 
+# which is determined by multiplying a sequence of numbers.
+numbers = [1, 2, 3, 4, 5]
+print(reduce(lambda x,y : x * y, numbers))
+
+
+
