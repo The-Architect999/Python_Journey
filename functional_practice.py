@@ -226,5 +226,37 @@ print(combined_dict)
 numbers = [1, 2, 3, 4, 5]
 print(reduce(lambda x,y : x * y, numbers))
 
+#more exercise before decorators
+#1. The Alias (Functions as Variables)
+harvests = [15.5, 20.1, 12.0]
+calculate_total_yield = sum
+print(calculate_total_yield(harvests))
+
+#2. The Strategy (Passing Functions as Arguments)
+def melee(power): return power - 5   # Armor absorbs 5
+def magic(power): return power       # Magic ignores armor
+def execute_strike(attack_style, power):
+    return attack_style(power)
+print(execute_strike(melee, 20))
+
+#3. The Factory (Returning Functions)
+def create_limit(threshold):
+    return lambda x: x >= threshold
+flag_10k = create_limit(10000)
+print(flag_10k(15000)) # Should print True
+
+# The Missing Boss Fight: Exercise 4
+def read_temp():
+    return 24.5
+def add_logging(func):
+    print("--- Activating Sensor ---")
+    # YOUR CODE HERE: 
+    variable = []
+    variable.append(func())
+    print("--- Deactivating Sensor ---")
+    return variable
+print(add_logging(read_temp))
+
+
 
 
