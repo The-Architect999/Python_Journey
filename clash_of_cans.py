@@ -8,49 +8,61 @@ class IngameObjects():
 
 
 class Troops(IngameObjects):
-    def __init__(self):
+    def __init__(self, name):
         # default counters, to be updated with the library
         self.dammage = 0
         self.health = 0
-        self.quant = 0
+        self.quantity = 0
         self.level = 1
+        self.name = name
+        
 
     def deploy(self, location: tuple):
         self.loaction = location
         # to learn more to add here
         # need to check if i should use a __srt__ or just add a name in args
-        return f"{self} Deployed!"
+        return f"{self.name} Deployed!"
 
-    def Train(self, quantity):
-        self.quantity = quantity
+    def train(self, quantity):
+        self.quantity += quantity
+
+    def training_queue (self, roster : dict, queue : list):
+        self.roster = roster #{archer: 1, barbarian: 2} 
+        self.queue = queue #[archre, barbarian]
+        for recruits in queue:
+            recruits.train(roster.get(recruits))
+
+
+    def __str__(self):
+        return self.name
 
 
 # children - Troolps to set defaults
 class Archers (Troops):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, name):
+        super().__init__(name)
 
 
 # only one instance needed
-archer = Archers()
+archer = Archers('archer')
 
 
 class Barbarians (Troops):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, name):
+        super().__init__(name)
 
 
 # only one instance needed
-barbarian = Barbarians()
+barbarian = Barbarians('barbarian')
 
 
 class WallBreakers (Troops):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, name):
+        super().__init__(name)
 
 
 # only one instance needed
-wallbreaker = WallBreakers()
+wallbreaker = WallBreakers('wallbreaker')
 
 
 # class of defences:
@@ -61,9 +73,7 @@ class Defences(IngameObjects):
 
     def active(self):
         self.level = 1
-        self.status = False
-        # not sure if i should set the status to a bool or a str "currently upgrading"
-        # to explore
+        self.status = '' #idle/upgrading/destroyed/locked-on
 
     "recomendation - for calling the name directly, to try"
     # def upgrade(self):
@@ -84,12 +94,14 @@ class Defences(IngameObjects):
             # i think ill need to add names in the args as well to get it to print the building name
             # need to check for alternatives to do that as i already have the name as class when i need to call it
 
-    def defend(self, under_attack):
-        self.under_attack = under_attack
+    def defend(self, all_enemies : list, enemies_in_range : list):
+        all_enemies = all_enemies # have to make a master list for deploy so this list gets updated automatically 
+        enemies_in_range = enemies_in_range # have to figure this out based on location and targeting, also haven't learned time math yet
+        self. valid_targets = [] # list of valid targets for the defence building
         if self.active == "under construction":
             return None
         else:
-            # need to get range here
+            valid_targets += set(all_enemies).intersection(set(enemies_in_range))
             pass
 
 # yet to check what args to pass to parent for defences
@@ -142,3 +154,4 @@ class Villagers(IngameObjects):
 
 
 # to be continued..........
+
