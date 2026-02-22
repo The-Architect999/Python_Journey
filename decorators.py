@@ -50,7 +50,7 @@ def performance(fn):
 
 @performance
 def long_time():
-    for i in range(10):
+    for i in range(100000000):
         i*5
 
 long_time()

@@ -245,17 +245,7 @@ def create_limit(threshold):
 flag_10k = create_limit(10000)
 print(flag_10k(15000)) # Should print True
 
-# The Missing Boss Fight: Exercise 4
-def read_temp():
-    return 24.5
-def add_logging(func):
-    print("--- Activating Sensor ---")
-    # YOUR CODE HERE: 
-    variable = []
-    variable.append(func())
-    print("--- Deactivating Sensor ---")
-    return variable
-print(add_logging(read_temp))
+
 
 
 
