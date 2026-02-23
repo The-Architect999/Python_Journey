@@ -84,6 +84,7 @@ def performance(fn):
 
 #known exercise
 #Fibonacci Numbers
+@performance
 def fib(number):
     start = 0
     start1 = 1
@@ -96,13 +97,13 @@ def fib(number):
         yield v
     StopIteration
 
-for i in fib(20):
+for i in fib(20000):
     print(i)
 
         
 
     
-    
+     
 
 
 
