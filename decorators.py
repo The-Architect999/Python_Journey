@@ -124,3 +124,57 @@ print(approve_loan(user_clean, 400000))
 
 # This should print the ALERT message, completely blocking the loan
 print(approve_loan(user_suspect, 400000))
+
+#realistic exercises
+#Exercise 1: The Data Pipeline Sanitizer
+def sanitize_strings(fn):
+    def wrap(*args):
+        clean = []
+        for x in args:
+            if isinstance(x, str):
+                clean.append(x.strip().title())
+            else:
+                clean.append(x)
+        return fn(*clean)
+    return wrap
+
+@sanitize_strings
+def create_customer_profile(first_name, last_name, age):
+    return f"Profile Created: {first_name} {last_name}, Age: {age}"
+
+print(create_customer_profile("  aRtHuR  ", "mOrGaN", 36))
+
+#Exercise 2: The Local Cache (Memoization)
+import time
+def memoize(fn):
+    cache = {}
+    def wrap(*args):
+        if args in cache.keys():
+            return cache[args]
+        else:
+            cache[args] = fn(*args)
+            return cache[args]
+    return wrap
+        
+
+@memoize
+def heavy_data_query(customer_id):
+    print(f"Connecting to database for ID {customer_id}... (takes 2 seconds)")
+    time.sleep(2) # Simulates a slow server
+    return f"Data payload for {customer_id}"
+
+# --- TEST CASES ---
+print("--- FIRST CALL ---")
+print(heavy_data_query(101)) # This should take 2 seconds
+
+print("\n--- SECOND CALL (Exact same ID) ---")
+print(heavy_data_query(101)) # This should be INSTANT, no "Connecting..." printed
+
+print("\n--- THIRD CALL (New ID) ---")
+print(heavy_data_query(102)) # This should take 2 seconds again
+
+
+
+
+
+
