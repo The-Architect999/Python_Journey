@@ -175,4 +175,92 @@ print("--- INITIATING PIPELINE ---")
 for alert in fraud_alerts_stream:
     print(f"CRITICAL: Freeze account for {alert}")
 
-# GOAL OUTPUT: Dutch, Micah
+
+#combining this with error handling
+# The Raw Data (Notice the two corrupted logs I slipped in)
+server_logs = [
+    "TXN-001,Arthur,450",
+    "TXN-002,Dutch,eighty-five-thousand", # Corrupt Amount (ValueError)
+    "TXN-003,John,1200",
+    "TXN-004-Micah-150000",               # Wrong delimiter (IndexError)
+    "TXN-005,Sadie,900"
+]
+
+def secure_parse_logs(log_stream):
+    for x in log_stream:
+        temp = []
+        try:
+            temp = x.split(',')
+            yield {'trxn': temp[0], 'name' : temp[1], 'amount' : int(temp[2])}
+        except ValueError:
+            print(f"WARNING: Corrupt amount data in log -> {x}")
+        except IndexError:
+            print(f'WARNING: Malformed log format -> {x}')
+
+
+# --- TEST CASES ---
+print("--- INITIATING SECURE PIPELINE ---")
+for clean_data in secure_parse_logs(server_logs):
+    print(f"Successfully processed: {clean_data}")
+
+# GOAL OUTPUT:
+# Successfully processed: {'id': 'TXN-001', 'user': 'Arthur', 'amount': 450}
+# WARNING: Corrupt amount data in log -> TXN-002,Dutch,eighty-five-thousand
+# Successfully processed: {'id': 'TXN-003', 'user': 'John', 'amount': 1200}
+# WARNING: Malformed log format -> TXN-004-Micah-150000
+# Successfully processed: {'id': 'TXN-005', 'user': 'Sadie', 'amount': 900}
+
+
+
+
+# 1. Build your tripwire function here
+    def process_withdrawal(amount, balance):
+        if amount < 0:
+            raise PermissionError ('Fraud: Withdrawing negative amount')
+        elif amount > balance:
+            raise ValueError (f'Overdraft: Withdrawing {amount} from {balance}')
+        else:
+            balance -= amount
+            return balance
+
+# --- TEST CASES (The Blast Shields) ---
+# Notice how we use a try/except block to safely catch the exact errors YOU raised!
+transactions = [
+    (1000, 5000),   # Clean: Withdrawing 1000 from 5000
+    (6000, 5000),   # Overdraft: Withdrawing 6000 from 5000
+    (-500, 5000)    # Fraud: Withdrawing negative amount
+]
+
+print("--- INITIATING TRANSFERS ---")
+for amt, bal in transactions:
+    try:
+        new_bal = process_withdrawal(amt, bal)
+        print(f"SUCCESS: Transfer complete. New balance: {new_bal}")
+    except ValueError as ve:
+        print(f"DECLINED: {ve}")
+    except PermissionError as pe:
+        print(f"SECURITY ALERT: {pe}")
+
+# GOAL OUTPUT:
+# SUCCESS: Transfer complete. New balance: 4000
+# DECLINED: Insufficient funds.
+# SECURITY ALERT: CRITICAL: Negative transfer amount detected.
+
+
+
+def get_valid_deposit():
+    while True:
+        try:
+            amount = int(input("Enter deposit amount: "))
+            if amount < 0:
+                print("Amount cannot be negative.")
+            else:
+                return amount
+        except ValueError:
+            print("Invalid input. Please enter numbers only.")
+
+# --- TEST IT ---
+print("--- SECURE DEPOSIT PORTAL ---")
+# When you run this, try typing "five", then "-100", then finally "500"
+final_amount = get_valid_deposit()
+print(f"SUCCESS: ₹{final_amount} deposited into vault.")
