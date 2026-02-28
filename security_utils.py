@@ -54,24 +54,24 @@ def process_withdrawal(amount, balance):
 # ==========================================
 # EXECUTION & DIAGNOSTICS
 # ==========================================
-if __name__ == '__main__':
-    print("--- SYSTEM DIAGNOSTICS BOOTING ---")
+# if __name__ == '__main__':
+#     print("--- SYSTEM DIAGNOSTICS BOOTING ---")
     
-    transactions = [
-        (1000, 5000),   
-        (6000, 5000),   
-        (-500, 5000)    
-    ]
+#     transactions = [
+#         (1000, 5000),   
+#         (6000, 5000),   
+#         (-500, 5000)    
+#     ]
 
-    print("--- INITIATING TRANSFERS ---")
-    for amt, bal in transactions:
-        try:
-            new_bal = process_withdrawal(amt, bal)
-            print(f"SUCCESS: Transfer complete. New balance: {new_bal}")
-        except ValueError as ve:
-            print(f"DECLINED: {ve}")
-        except PermissionError as pe:
-            print(f"SECURITY ALERT: {pe}")
+#     print("--- INITIATING TRANSFERS ---")
+#     for amt, bal in transactions:
+#         try:
+#             new_bal = process_withdrawal(amt, bal)
+#             print(f"SUCCESS: Transfer complete. New balance: {new_bal}")
+#         except ValueError as ve:
+#             print(f"DECLINED: {ve}")
+#         except PermissionError as pe:
+#             print(f"SECURITY ALERT: {pe}")
 
 if __name__ == '__main__':
     print("--- SYSTEM DIAGNOSTICS BOOTING ---")
