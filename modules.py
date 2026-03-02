@@ -13,3 +13,8 @@ print(__name__)
 if __name__ == '__main__':
     #do this
     pass
+
+import random
+print(random.random())
+print(random.randint(1,200))
+print(random.choice([1,2,3,4,5]))
