@@ -17,4 +17,11 @@ if __name__ == '__main__':
 import random
 print(random.random())
 print(random.randint(1,200))
-print(random.choice([1,2,3,4,5]))
+my_list = [1,2,3,4,5]
+print(random.choice(my_list))
+random.shuffle(my_list)
+
+import sys
+sys.argv
+
+
