@@ -1,0 +1,5 @@
+Temperature: 17°CTemperature: 18°CTemperature: 19°C
+Temperature: 17°C
+Temperature: 18°C
+Temperature: 19°C
+

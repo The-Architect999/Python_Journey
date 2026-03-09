@@ -1,11 +1,11 @@
-# The Architect's Dictionary Drill
-
+# # The Architect's Dictionary Drill
+import pdb
 tactics = {
     "Mirroring": 0,
     "Victim Card": 0,
     "Silence": 0
 }
-
+pdb.set_trace()
 while True:
     print("\nCurrent Intel:", tactics)
     action = input("Enter tactic observed (or 'exit' to quit): ")
@@ -19,3 +19,11 @@ while True:
         print(f"Recorded. {action} count is now: {tactics[action]}")
     else:
         print("Unknown tactic. Stay alert.")
+
+#actually learning testing now lol:
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+HEPA Filter: Operational
+ERROR: Sensor offline
+Laminar Flow Hood: Operational
+ERROR: Calibration failed
+Sheeran Looper: Connected
