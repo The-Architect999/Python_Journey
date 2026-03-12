@@ -37,3 +37,4 @@ sandbox.rmdir()     # .rmdir() is the command to delete an EMPTY directory
 
 #confirming the file is deleted
 print(f"Evidence destroyed. Sandbox exists? {sandbox.exists()}")
+
