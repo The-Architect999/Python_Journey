@@ -17,14 +17,17 @@ inputs = sys.argv[1:] #starts at arg 1 but gets a list of all given
 import sys
 
 inputs = sys.argv[1:] #starts at arg 1 but gets a list of all given
-
-def pdf_combiner(pdfs):
-    merger = pypdf
-    for pdf in pdfs:
-        print(pdf)
-        #need to check merge files documentation - seens to be changed.
-
-pdf_combiner(inputs)
+# write using specific methods required onlly later
+merger = pypdf.PdfWriter()
+stamp = pypdf.PdfReader(r".\pdfs\wtr.pdf").pages[0]
+for pdf in inputs:
+    merger.append(pdf)
+    #need to check merge files documentation - seens to be changed.
+    #pyPDF2 - pypdf
+for page in merger.pages:
+    page.merge_page(stamp)
+merger.write(r".\pdfs\combined.pdf")
+print("all pages watermarked suscessfully!")
 
 
 
