@@ -1,3 +1,4 @@
+#inheritence - classes inherit methods from the parent classes
 class SuperList(list):
     def __init__(self, given):
         super().__init__(given)

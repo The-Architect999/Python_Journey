@@ -1,7 +1,24 @@
 #SIP CALCULATOR
-cap = input("what is the amount you'll be investing monthly?")
-avg_roi = input("what is the interest rate you're expecting (%)")
+while True:
+    try:
+        cap = int(input("what is the amount you'll be investing monthly?"))
+        if cap < 0:
+            raise "has to be Positive!"
+        break
+    except:
+        print(f"a number please")
 
+
+while True:
+    try:
+        avg_roi = int(input("what is the interest rate you're expecting (%)"))
+        if cap < 0:
+            print("has to be Positive!")
+        break
+    except (TypeError, ValueError) as err:
+        print(f"a number please//{err}")
+            
+    
 #value conversions
 cap0 = int(cap)
 avg_roi0 = int(avg_roi)
