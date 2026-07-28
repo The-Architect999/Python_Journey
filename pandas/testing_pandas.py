@@ -1,0 +1,2 @@
+asssss = "as"
+print (asssss)
