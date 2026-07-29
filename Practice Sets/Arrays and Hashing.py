@@ -30,7 +30,7 @@ used set to make use of hashing
 '''
 
 # ======================================================================================
-# contains duplicates
+# Anagram
 # ======================================================================================
 #Given two strings s and t, return True if t is an anagram of s (same letters, same counts, any order), False otherwise.
 # Aim for O(n) again — same "have I seen this before, how many times" idea, just counting instead of a plain set.
@@ -57,3 +57,42 @@ def is_anagram(s: str, t: str) -> bool:
 # it has 3 iterations but is still not O(n²)
 # this is O(n+m+c) which is still O(n) hence meets the constraints
 print(is_anagram("anagram", "nagaram"))
+
+
+# ======================================================================================
+# •	Two Sum
+# ======================================================================================
+#Given an array of integers nums and an integer target, return the indices of the two numbers that add up to target. 
+# Assume exactly one valid answer exists, and you may not use the same element twice.
+# Example 1:
+nums = [2, 7, 11, 15]
+target = 9
+# Output: [0, 1]  (2 + 7 = 9)
+def two_sum(nums: list[int], target: int) -> list[int]:
+    seen = set()
+    for i, no in enumerate(nums):
+        need = target - no
+        if need in seen:
+            return [nums.index(need), i]
+        seen.add(no)
+
+# here i remember that it is always beter to find in set as the items are basically the index and hence 0(1) complexity so chose set
+# the time complexity here if i understand it correctly is O(n) as there's a loop that iterates once, and theres a list indexing that runs exactly once
+# so that's 0(n) but because the indexing runs exactly once, its O(n+n) which is O(n)
+print(two_sum(nums, target))
+
+'''ERROR'''
+# if there were multiple close matches or this ran inside another loop, that .index() cost multiplies. 
+# More importantly for a real OA: .index() also has a subtle correctness risk — if a value appears more than once in nums,
+# .index() always returns the first occurrence, which might not be the one your seen set was even referring to.
+'''FIX: REPLACE SET with DICT'''
+
+def two_sum(nums: list[int], target: int) -> list[int]:
+    seen = dict()
+    for i, no in enumerate(nums):
+        need = target - no
+        if need in seen:
+            return [seen[need], i]
+        seen[no] = i
+
+print(two_sum(nums, target))    
