@@ -95,4 +95,67 @@ def two_sum(nums: list[int], target: int) -> list[int]:
             return [seen[need], i]
         seen[no] = i
 
-print(two_sum(nums, target))    
+print(two_sum(nums, target))
+
+
+# ======================================================================================
+# •	Group Anagrams
+# ======================================================================================
+# Given an array of strings strs, group the anagrams together. You can return the groups in any order.
+# Example:
+# strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# # Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+# def group_anagrams(strs: list[str]) -> list[list[str]]:
+
+#     seen = {}
+#     for words in strs:
+#         seen[words] = {}
+#         for letters in words:
+#             if letters in seen[words]:
+#                 seen[words][letters] += 1
+#             else:
+#                 seen[words][letters] = 1
+#     # {'eat': {'e': 1, 'a': 1, 't': 1}, 'tea': {'t': 1, 'e': 1, 'a': 1}, 
+#     #  'tan': {'t': 1, 'a': 1, 'n': 1}, 'ate': {'a': 1, 't': 1, 'e': 1}, 'nat': {'n': 1, 'a': 1, 't': 1}, 'bat': {'b': 1, 'a': 1, 't': 1}}
+#     counter = len(strs)
+#     temp = []
+#     for items in strs:
+#         if seen[items] == 
+
+# print(group_anagrams(strs))
+
+
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+def group_anagrams(strs):
+    groups = {}  # key -> list of words
+    for word in strs:
+        key = ''.join(sorted(word)) # this is now hashable
+        if key not in groups:   # if key not in groups, create empty list first
+            groups[key] = []
+            
+        if key in groups: # then append word to groups[key]
+            groups[key].append(word)
+
+    return list(groups.values())
+
+print(group_anagrams(strs))
+
+'''
+this one was tough to crack, documentation pending
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
